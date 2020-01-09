@@ -1,7 +1,7 @@
 ﻿using System;
 namespace Library
 {
-    internal class PriceDetails
+    public class PriceDetails
     {
         //Last Price
         public double? Last { get; set; }

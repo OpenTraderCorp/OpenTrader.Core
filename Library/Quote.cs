@@ -2,7 +2,12 @@
 
 namespace Library
 {
-    internal class Quote
+    /// <summary>
+    /// Represents the last price at which a security or commodity traded,
+    /// meaning the most recent price to which a buyer and seller agreed and at
+    /// which some amount of the asset was transacted.
+    /// </summary>
+    public class Quote
     {
         //Security Simbol
         public string Symbol { get; set; }
