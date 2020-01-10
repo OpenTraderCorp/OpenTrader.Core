@@ -9,52 +9,84 @@ namespace Library
     /// </summary>
     public class Quote
     {
-        //Security Simbol
+        /// <summary>
+        /// Security Simbol
+        /// </summary>
         public string Symbol { get; set; }
 
-        //Security detailed name or short description
+        /// <summary>
+        /// Security detailed name or short description
+        /// </summary>
         public string Description { get; set; }
 
-        //Exchange Code of the security
+        /// <summary>
+        /// Exchange Code of the security
+        /// </summary>
         public string ExchangeCode { get; set; }
 
-        //The type of the security quoted
+        /// <summary>
+        /// The type of the security quoted
+        /// </summary>
         public SecurityType Type { get; set; }
 
-        //Detailed information about the price, including the bid and ask
+        /// <summary>
+        /// Detailed information about the price, including the bid and ask
+        /// </summary>
         public PriceDetails PriceInformation { get; set; }
 
-        //Current day's volume
+        /// <summary>
+        /// Current day's volume
+        /// </summary>
         public long Volume { get; set; }
 
-        //Avarage volume of the security
+        /// <summary>
+        /// Avarage volume of the security
+        /// </summary>
         public long AverageVolume { get; set; }
 
-        //Volume of the last price
+        /// <summary>
+        /// Volume of the last price
+        /// </summary>
         public long LastVolume { get; set; }
 
-        //Most recent trade date
+        /// <summary>
+        /// Most recent trade date
+        /// </summary>
         public DateTime? TradeDate { get; set; }
 
-        //Size of the bid
+        /// <summary>
+        /// Size of the bid
+        /// </summary>
         public long Bidsize { get; set; }
 
-        //Bid exchange code
+        /// <summary>
+        /// Bid exchange code
+        /// </summary>
         public string BidExchangeCode { get; set; }
 
-        //Date of bid price
+        /// <summary>
+        /// Date of bid price
+        /// </summary>
         public DateTime? BidDate { get; set; }
 
-        //Size of Ask
+        /// <summary>
+        /// Size of Ask
+        /// </summary>
         public long AskSize { get; set; }
 
-        //Ask Exchange Code
+        /// <summary>
+        /// Ask Exchange Code
+        /// </summary>
         public string AskExchangeCode { get; set; }
 
-        //Data of Ask price
+        /// <summary>
+        /// Data of Ask price
+        /// </summary>
         public DateTime AskDate { get; set; }
 
-        //Options Details. Only present if the current quote is a Option
-        public OptionQuoteDetails OptionDetails {get;set;}
+        /// <summary>
+        /// Options Details. Only present if the current quote is a Option
+        /// </summary>
+        public OptionQuoteDetails OptionDetails { get; set; }
     }
 }

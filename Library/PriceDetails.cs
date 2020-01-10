@@ -3,27 +3,57 @@ namespace Library
 {
     public class PriceDetails
     {
-        //Last Price
+        /// <summary>
+        ///Last Price
+        ////// </summary>
         public double? Last { get; set; }
-        //
+
+
         public double? Change { get; set; }
-        //Open Price of the current session
+
+        /// <summary>
+        /// Open Price of the current session
+        /// </summary>
         public double? Open { get; set; }
-        //Highest price recorded for the current session
+
+        /// <summary>
+        /// Highest price recorded for the current session
+        /// </summary>
         public double? High { get; set; }
-        //Lowest price recorded for the current session
+
+        /// <summary>
+        /// Lowest price recorded for the current session
+        /// </summary>
         public double? Low { get; set; }
-        //Close price for the current session
+
+        /// <summary>
+        /// Close price for the current session
+        /// </summary>
         public double? Close { get; set; }
-        //Previous close price
+
+        /// <summary>
+        /// Previous close price
+        /// </summary>
         public double Prevclose { get; set; }
-        //Ask Price
+
+        /// <summary>
+        /// Ask Price
+        /// </summary>
         public double Ask { get; set; }
-        //Bid Price
+
+        /// <summary>
+        /// Bid Price
+        /// </summary>
         public double Bid { get; set; }
-        //Highest recorded price for the last 52 weeks (1 year time)
+
+        /// <summary>
+        /// Highest recorded price for the last 52 weeks (1 year time)
+        /// </summary>
         public double? Week52_High { get; set; }
-        //Lowest recorded price for the last 52 weeks (1 year time)
+
+        /// <summary>
+        /// Lowest recorded price for the last 52 weeks (1 year time)
+        /// </summary>
         public double? Week52_Low { get; set; }
     }
 }

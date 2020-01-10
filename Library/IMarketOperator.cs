@@ -4,6 +4,9 @@ using System.Threading.Tasks;
 
 namespace Library
 {
+    /// <summary>
+    /// Represents the HUB of operations
+    /// </summary>
     public interface IMarketOperator : IDisposable
     {
         IMarketChannel CurrentChannel { get; set; }
