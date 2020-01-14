@@ -90,4 +90,80 @@ namespace Library
         /// </summary>
         Critical = 5
     }
+
+    /// <summary>
+    /// The health status of a given entity, process or autonomous agent
+    /// </summary>
+    public enum AgentStatus
+    {
+        /// <summary>
+        /// No status could be obtained.
+        /// If the agent persist on this state for long, it will be forcefully shutdown.
+        /// </summary>
+        Unresponsive = 0,
+
+        /// <summary>
+        /// Operating as designed
+        /// </summary>
+        Operational = 1,
+
+        /// <summary>
+        /// The entity is preparing itself to enter operational mode
+        /// </summary>
+        StartingUp = 2,
+
+        /// <summary>
+        /// The entity received the shutdown command and it's clearing itself
+        /// </summary>
+        ShuttingDown = 3,
+
+        /// <summary>
+        /// The entity is alive but it's not operating. It continues to receive
+        /// data such as Quotes and Ticks, and respond to commands, but it does
+        /// not issue orders.
+        /// </summary>
+        Paused = 4,
+
+        /// <summary>
+        /// An error state that could not be recovered from
+        /// </summary>
+        Failure = 5,
+
+        /// <summary>
+        /// This is the status of a entity that has been shutdown or never started
+        /// in the first place
+        /// </summary>
+        Off = 6,
+
+        /// <summary>
+        /// This agent is handling some kind of problem and requires assistance.
+        /// The platform will try to provide extended resources and time allocation
+        /// and increase the healthcheck rate.
+        /// If the agent persist on this state for long, it will be gracefuly shutdown.
+        /// </summary>
+        Distressed = 7
+    }
+
+    /// <summary>
+    /// Indicates how the shutdown order should be handled
+    /// </summary>
+    public enum ShutdownOrderSeverity
+    {
+        /// <summary>
+        /// A shutdown that has been request on a controlled fashion. Failure to
+        /// comply will not result in forceful termination.
+        /// </summary>
+        Graceful = 1,
+        /// <summary>
+        /// A shutdown that has been initiated automatically by the platform.
+        /// Failure to comply will result in forceful termination
+        /// </summary>
+        Abrupt = 2,
+        /// <summary>
+        /// A shutdown that has been initiated automatically and is platform wide.
+        /// Communications might have been disrupted and should be tested. No
+        /// guarantees are offered in this case.
+        /// </summary>
+        Emergency = 3
+    }
 }
