@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Hosting;
 
 namespace Library
 {
     /// <summary>
     /// The base abstraction for a operating robot
     /// </summary>
-    public interface IAutonomousAgent
+    public interface IAutonomousAgent : IHostedService
     {
         /// <summary>
         /// The human friendly name of this agent
@@ -42,25 +43,11 @@ namespace Library
         Task Configure(IReadOnlyDictionary<string, string> configurations);
 
         /// <summary>
-        /// Starts or unpauses the agent, signaling that it's cleared to issue
-        /// orders.
-        /// </summary>
-        /// <param name="cancellationToken"></param>
-        /// <returns></returns>
-        Task Start(CancellationToken cancellationToken);
-
-        /// <summary>
         /// Pauses the agent, signaling that it should stop issuing orders. It
         /// will continue to receive Quotes, Ticks and other events
         /// </summary>
         /// <returns></returns>
         Task Pause();
-
-        /// <summary>
-        /// Signals the agent that it should stop all activities.
-        /// </summary>
-        /// <returns></returns>
-        Task Shutdown(ShutdownOrderSeverity severity);
 
         /// <summary>
         /// Summarized report on the status of the current agent
