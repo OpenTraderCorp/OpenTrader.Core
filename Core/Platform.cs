@@ -1,27 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Library;
-using Microsoft.Extensions.DependencyInjection;
+using Unity;
 
 namespace Core
 {
     public class Platform
     {
-        private IServiceCollection _serviceCollection;
+        private const int _defaultTimeout = 10000;
 
-        internal List<OperationalAgentInfo> RunningAgents { get; set; }
-
+        private IUnityContainer _container;
+        
+        internal IReadOnlyDictionary<string,string> Configurations { get; }
+        internal List<OperationalAgentInfo> RegistredAgents { get; set; }
 
         /// <summary>
         /// Lists the Autonomous Agents that are being handled by this instance
         /// </summary>
-        public IEnumerable<IAutonomousAgent> Agents
+        public IEnumerable<(Guid Id, string Name)> Agents
         {
             get
             {
-                return RunningAgents.Select(i => i.Agent);
+                return RegistredAgents.Select(i => (i.Agent.InstanceId, i.Agent.AgentName));
             }
         }
 
@@ -31,9 +34,25 @@ namespace Core
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        public Task<IAutonomousAgent> LoadAutonomousAgent<T>() where T : class, IAutonomousAgent
+        public async Task<Guid> LoadAutonomousAgent<T>(string name) where T : class, IAutonomousAgent
         {
-            return null;
+            var agent = new OperationalAgentInfo();
+
+            _container.RegisterSingleton<IAutonomousAgent, T>(name);
+            var instance = _container.Resolve<IAutonomousAgent>(name);
+
+            var uid = Guid.NewGuid();
+
+            instance.InstanceId = uid;
+            instance.StandardOutput = Console.OpenStandardOutput();            
+
+            agent.Agent = instance;
+            agent.UniqueID = uid;
+            agent.CancellationTokenSource = new CancellationTokenSource();
+
+            RegistredAgents.Add(agent);
+
+            return agent.UniqueID;
         }
     }
 }
